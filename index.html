@@ -1,20 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Interactive Binder: FULL PROMPT BOOK</title>
+    <title>My Interactive Binder: Full Prompt Book</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body, html { margin: 0; padding: 0; overflow: hidden; height: 100%; }
-        /* The iframe is what displays the PDF */
-        #pdf-iframe { width: 100%; height: 100vh; border: none; }
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; font-family: sans-serif; }
+        
+        /* Container for the Button Bar at the top */
+        #toolbar { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 50px; 
+            background-color: #333; 
+            color: white;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            z-index: 10; /* Ensures the toolbar is above the PDF */
+        }
+        
+        /* Styling for the button */
+        #prompt-button {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 20px;
+        }
+        
+        #prompt-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* The PDF Viewer area */
+        #pdf-iframe { 
+            width: 100%; 
+            /* Subtract the height of the toolbar from the viewport height */
+            height: calc(100vh - 50px); 
+            border: none;
+            /* Push the PDF content down below the toolbar */
+            margin-top: 50px; 
+        }
     </style>
 </head>
 <body>
+
+    <div id="toolbar">
+        <span>📘 My Interactive Prompts</span>
+        
+        <button id="prompt-button" onclick="showPromptPopup()">
+            Click for Quick Tip!
+        </button>
+    </div>
 
     <iframe id="pdf-iframe" 
         src="https://mozilla.github.io/pdf.js/web/viewer.html?file=./FULL%20PROMPT%20BOOK.pdf" 
         allowfullscreen>
     </iframe>
+
+    <script>
+        function showPromptPopup() {
+            // This is the text that will appear in the popup (the 'alert' box)
+            var popupText = "💡 **PROMPT TIP:** Always be clear and specific with the desired output. For example, specify 'return as a bulleted list'.";
+            
+            // The standard JavaScript function to display a popup
+            alert(popupText);
+        }
+    </script>
 
 </body>
 </html>
